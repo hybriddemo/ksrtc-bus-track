@@ -20,11 +20,11 @@ const BusesPage: React.FC = () => {
   
   // Sample data - in a real app, this would come from an API
   const busesMockData: Bus[] = [
-    { id: 1, regNumber: 'KL-01-AA-1234', model: 'Ashok Leyland', depot: 'Thiruvananthapuram', status: 'onroad', capacity: 52, route: 'Thiruvananthapuram-Kochi', lastUpdated: '2025-05-01T08:30:00' },
-    { id: 2, regNumber: 'KL-07-BB-5678', model: 'Tata', depot: 'Ernakulam', status: 'maintenance', capacity: 48, route: 'Kochi-Thrissur', lastUpdated: '2025-04-30T14:20:00' },
-    { id: 3, regNumber: 'KL-10-CC-9101', model: 'Volvo', depot: 'Kozhikode', status: 'outofservice', capacity: 40, route: 'Kozhikode-Kannur', lastUpdated: '2025-04-29T11:15:00' },
-    { id: 4, regNumber: 'KL-05-DD-1122', model: 'Ashok Leyland', depot: 'Kollam', status: 'onroad', capacity: 52, route: 'Kollam-Alappuzha', lastUpdated: '2025-05-01T09:45:00' },
-    { id: 5, regNumber: 'KL-15-EE-3344', model: 'Tata', depot: 'Palakkad', status: 'onroad', capacity: 48, route: 'Palakkad-Malappuram', lastUpdated: '2025-05-01T07:30:00' },
+    { id: '1', regNumber: 'KL-01-AA-1234', model: 'Ashok Leyland', depotId: 'depot-1', depotName: 'Thiruvananthapuram', status: 'onroad', capacity: 52, route: 'Thiruvananthapuram-Kochi', lastUpdated: '2025-05-01T08:30:00' },
+    { id: '2', regNumber: 'KL-07-BB-5678', model: 'Tata', depotId: 'depot-2', depotName: 'Ernakulam', status: 'maintenance', capacity: 48, route: 'Kochi-Thrissur', lastUpdated: '2025-04-30T14:20:00' },
+    { id: '3', regNumber: 'KL-10-CC-9101', model: 'Volvo', depotId: 'depot-3', depotName: 'Kozhikode', status: 'outofservice', capacity: 40, route: 'Kozhikode-Kannur', lastUpdated: '2025-04-29T11:15:00' },
+    { id: '4', regNumber: 'KL-05-DD-1122', model: 'Ashok Leyland', depotId: 'depot-4', depotName: 'Kollam', status: 'onroad', capacity: 52, route: 'Kollam-Alappuzha', lastUpdated: '2025-05-01T09:45:00' },
+    { id: '5', regNumber: 'KL-15-EE-3344', model: 'Tata', depotId: 'depot-5', depotName: 'Palakkad', status: 'onroad', capacity: 48, route: 'Palakkad-Malappuram', lastUpdated: '2025-05-01T07:30:00' },
   ];
 
   const renderStatusBadge = (status: string) => {
@@ -43,8 +43,8 @@ const BusesPage: React.FC = () => {
   const filteredBuses = busesMockData.filter(bus => 
     bus.regNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
     bus.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    bus.depot.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    bus.route.toLowerCase().includes(searchTerm.toLowerCase())
+    bus.depotName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    bus.route?.toLowerCase().includes(searchTerm.toLowerCase() || '')
   );
 
   return (
@@ -89,8 +89,8 @@ const BusesPage: React.FC = () => {
                 <TableRow key={bus.id}>
                   <TableCell className="font-medium">{bus.regNumber}</TableCell>
                   <TableCell>{bus.model}</TableCell>
-                  <TableCell>{bus.depot}</TableCell>
-                  <TableCell>{bus.route}</TableCell>
+                  <TableCell>{bus.depotName}</TableCell>
+                  <TableCell>{bus.route || '-'}</TableCell>
                   <TableCell>{bus.capacity}</TableCell>
                   <TableCell>{renderStatusBadge(bus.status)}</TableCell>
                   <TableCell>
