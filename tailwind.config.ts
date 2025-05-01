@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,15 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// KSRTC specific colors
+				ksrtc: {
+					primary: '#0066CC',
+					secondary: '#004080',
+					light: '#E6F0FF',
+					"status-onroad": '#2ECC71',
+					"status-maintenance": '#F39C12',
+					"status-outofservice": '#E74C3C'
 				}
 			},
 			borderRadius: {
