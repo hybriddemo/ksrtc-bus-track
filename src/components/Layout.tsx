@@ -1,6 +1,17 @@
 
 import React, { useState } from 'react';
-import { Sidebar, SidebarContent, SidebarHeader, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
+import { 
+  SidebarProvider,
+  Sidebar, 
+  SidebarContent, 
+  SidebarHeader, 
+  SidebarFooter, 
+  SidebarGroup, 
+  SidebarGroupContent, 
+  SidebarMenu, 
+  SidebarMenuItem, 
+  SidebarMenuButton 
+} from "@/components/ui/sidebar";
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Bus, Calendar, BarChart3, Settings, LogOut, PanelRightOpen, Users, RefreshCw } from 'lucide-react';
@@ -27,10 +38,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen flex w-full">
-      {/* Sidebar */}
-      {sidebarOpen && (
-        <Sidebar className="border-r bg-sidebar">
+    <SidebarProvider defaultOpen={sidebarOpen}>
+      <div className="min-h-screen flex w-full">
+        {/* Sidebar */}
+        <Sidebar>
           <SidebarHeader className="p-4 flex flex-col items-center justify-center gap-2 border-b border-sidebar-border">
             <div className="text-xl font-bold text-white">KSRTC Bus Track</div>
             <div className="text-sm text-white/70">
@@ -109,7 +120,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                         <span>Settings</span>
                       </a>
                     </SidebarMenuButton>
-                    </SidebarMenuItem>
+                  </SidebarMenuItem>
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
@@ -125,31 +136,31 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </Button>
           </SidebarFooter>
         </Sidebar>
-      )}
-
-      {/* Main Content */}
-      <div className="flex flex-col w-full">
-        {/* Header */}
-        <header className="bg-white border-b border-gray-200 flex items-center justify-between p-4 h-16 shadow-sm">
-          <Button 
-            variant="ghost" 
-            size="icon"
-            onClick={toggleSidebar}
-            className="hover:bg-gray-100"
-          >
-            <PanelRightOpen size={20} />
-          </Button>
-          <div className="flex items-center space-x-2">
-            <span className="font-medium">{user?.name}</span>
-          </div>
-        </header>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-y-auto bg-gray-50 p-6">
-          {children}
-        </main>
+        <div className="flex flex-col w-full">
+          {/* Header */}
+          <header className="bg-white border-b border-gray-200 flex items-center justify-between p-4 h-16 shadow-sm">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={toggleSidebar}
+              className="hover:bg-gray-100"
+            >
+              <PanelRightOpen size={20} />
+            </Button>
+            <div className="flex items-center space-x-2">
+              <span className="font-medium">{user?.name}</span>
+            </div>
+          </header>
+
+          {/* Main Content */}
+          <main className="flex-1 overflow-y-auto bg-gray-50 p-6">
+            {children}
+          </main>
+        </div>
       </div>
-    </div>
+    </SidebarProvider>
   );
 };
 
