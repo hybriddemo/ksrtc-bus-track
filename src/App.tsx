@@ -7,6 +7,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import BusesPage from "./pages/BusesPage";
+import AttendancePage from "./pages/AttendancePage";
+import TransfersPage from "./pages/TransfersPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import UsersPage from "./pages/UsersPage";
+import SettingsPage from "./pages/SettingsPage";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +25,12 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/buses" element={<BusesPage />} />
+            <Route path="/attendance" element={<AttendancePage />} />
+            <Route path="/transfers" element={<TransfersPage />} />
+            <Route path="/analytics" element={<AnalyticsPage />} />
+            <Route path="/users" element={<UsersPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

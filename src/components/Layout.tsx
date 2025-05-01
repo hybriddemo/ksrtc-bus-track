@@ -15,6 +15,7 @@ import {
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Bus, Calendar, BarChart3, Settings, LogOut, PanelRightOpen, Users, RefreshCw } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, logout } = useAuth();
@@ -55,38 +56,38 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <a href="/" className="flex items-center space-x-3">
+                      <Link to="/" className="flex items-center space-x-3">
                         <LayoutDashboard size={20} />
                         <span>Dashboard</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <a href="/buses" className="flex items-center space-x-3">
+                      <Link to="/buses" className="flex items-center space-x-3">
                         <Bus size={20} />
                         <span>Buses</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <a href="/attendance" className="flex items-center space-x-3">
+                      <Link to="/attendance" className="flex items-center space-x-3">
                         <Calendar size={20} />
                         <span>Attendance</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   
                   {(user?.role === 'depot-admin' || user?.role === 'super-admin') && (
                     <SidebarMenuItem>
                       <SidebarMenuButton asChild>
-                        <a href="/transfers" className="flex items-center space-x-3">
+                        <Link to="/transfers" className="flex items-center space-x-3">
                           <RefreshCw size={20} />
                           <span>Transfers</span>
-                        </a>
+                        </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   )}
@@ -95,19 +96,19 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     <>
                       <SidebarMenuItem>
                         <SidebarMenuButton asChild>
-                          <a href="/analytics" className="flex items-center space-x-3">
+                          <Link to="/analytics" className="flex items-center space-x-3">
                             <BarChart3 size={20} />
                             <span>Analytics</span>
-                          </a>
+                          </Link>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                       
                       <SidebarMenuItem>
                         <SidebarMenuButton asChild>
-                          <a href="/users" className="flex items-center space-x-3">
+                          <Link to="/users" className="flex items-center space-x-3">
                             <Users size={20} />
                             <span>Users</span>
-                          </a>
+                          </Link>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                     </>
@@ -115,10 +116,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <a href="/settings" className="flex items-center space-x-3">
+                      <Link to="/settings" className="flex items-center space-x-3">
                         <Settings size={20} />
                         <span>Settings</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
